@@ -1,0 +1,44 @@
+{
+  "name": "@tilemoon/tiga",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "tilemoon <zhengmao0613@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "tiga": "./bin/tiga.js"
+  },
+  "scripts": {
+    "lint": "eslint lib/**/*.js"
+  },
+  "dependencies": {
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11",
+    "@types/react-router-config": "5.0.4",
+    "@types/react-router-dom": "5.3.2",
+    "chalk": "4",
+    "cheerio": "1.0.0-rc.10",
+    "commander": "8.3.0",
+    "connect-history-api-fallback": "1.6.0",
+    "css-loader": "6.5.1",
+    "esbuild": "0.14.14",
+    "esbuild-loader": "2.18.0",
+    "esbuild-plugin-less": "1.1.6",
+    "fs-extra": "10.0.0",
+    "html-webpack-plugin": "5.5.0",
+    "koa": "2.13.4",
+    "koa-static": "5.0.0",
+    "koa2-connect": "1.0.2",
+    "less": "4.1.2",
+    "less-loader": "10.2.0",
+    "ora": "5",
+    "postcss-loader": "6.2.1",
+    "style-loader": "3.3.1",
+    "webpack": "5.67.0",
+    "webpack-chain": "6.5.1",
+    "webpack-dev-middleware": "5.3.0",
+    "webpack-hot-middleware": "2.25.1"
+  },
+  "devDependencies": {
+    "eslint": "8.5.0"
+  }
+}
