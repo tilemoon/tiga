@@ -1,6 +1,6 @@
 {
   "name": "@tilemoon/react-template",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A react template project",
   "main": "index.js",
   "repository": "git@github.com:tilemoon/react-template.git",
@@ -19,6 +19,6 @@
     "typescript": "4.5.4"
   },
   "devDependencies": {
-    "@tilemoon/tiga": "0.2.1"
+    "@tilemoon/tiga": "^0.3.0"
   }
 }
