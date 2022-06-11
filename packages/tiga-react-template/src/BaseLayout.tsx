@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { renderRoutes } from 'react-router-config'
-import { rootRoute } from '~/routes'
+import { Outlet } from 'react-router'
 
 const BaseLayout: React.FC<{}> = () => {
   return <>
-    {renderRoutes(rootRoute.routes)}
+    <Outlet />
   </>
 }
 

@@ -4,7 +4,7 @@ const {
   define,
   whenDev,
   whenBuild,
-} = require('../packages/tiga-cli')
+} = require('@tilemoon/tiga')
 
 chainWebpack(chain => {
 

@@ -1,10 +1,15 @@
 import * as React from 'react'
-import { renderRoutes } from 'react-router-config'
 
 import globalCtx from '~/context/global'
-import routes from '~/routes'
+import { Route, Routes, Navigate } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+
+import BaseLayout from '~/BaseLayout'
 
 import './App.less'
+
+const Home = React.lazy(() => import('~/pages/home'))
+const Foo = React.lazy(() => import('~/pages/foo'))
 
 const App: React.FC<{}> = () => {
   const { user, setUser } = React.useContext(globalCtx)
@@ -16,11 +21,24 @@ const App: React.FC<{}> = () => {
     })
   }, 2000)
 
-  if (!user) return <>'no User'</>
-
-  return <>
-    {renderRoutes(routes)}
-  </>
+  return <BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={<Navigate to="/home" replace />}
+      />
+      <Route path="/" element={<BaseLayout />}>
+        <Route path="home" element={
+          <React.Suspense fallback={<>load failed</>}>
+            <Home />
+          </React.Suspense>
+        } />
+        <Route path="foo" element={<React.Suspense fallback={<>load failed</>}>
+          <Foo />
+        </React.Suspense>} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
 }
 
 export default App

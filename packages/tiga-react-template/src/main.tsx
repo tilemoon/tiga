@@ -1,16 +1,16 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
 import { GlobalCtxProvider } from '~/context/global'
 
 import App from './App'
 
 console.log(__DEV__)
 
-ReactDOM.render(
-  <BrowserRouter>
-    <GlobalCtxProvider>
-      <App />
-    </GlobalCtxProvider>
-  </BrowserRouter>
-, document.querySelector('#app'))
+const appContainer = document.querySelector('#app')
+
+if (appContainer) {
+  const root = createRoot(appContainer)
+  root.render(<GlobalCtxProvider><App /></GlobalCtxProvider>)
+} else {
+  // app container not founded.
+}

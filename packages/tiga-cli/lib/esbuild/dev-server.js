@@ -18,14 +18,29 @@ const createDevServer = async ({
     entry,
     outDir,
     mode,
-    hotReloadClients: clients,
   })
 
   try {
     const server = new Koa()
+    let result, htmlString
 
-    const result = await build(config)
-    const htmlString = createEsbuildHtml({ outDir, outputFiles: result.outputFiles })
+    config.watch = {
+      onRebuild(error, buildResult) {
+        result = buildResult
+        htmlString = createEsbuildHtml({ outDir, outputFiles: result.outputFiles })
+
+        clients.forEach((res) => res.write('data: update\n\n'))
+
+        if (error) {
+          logger.error(error)
+        } else {
+          logger.success('rebuild successed.')
+        }
+      },
+    }
+
+    result = await build(config)
+    htmlString = createEsbuildHtml({ outDir, outputFiles: result.outputFiles })
 
     server.use((ctx) => {
       const targetFile = result.outputFiles.find(

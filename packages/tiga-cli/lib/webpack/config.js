@@ -1,5 +1,6 @@
 const Config = require('webpack-chain')
 const Webpack = require('webpack')
+const path = require('path')
 
 const { paramRequired } = require('../util')
 const helperPaths = require('../helper/paths')
@@ -52,6 +53,8 @@ const confResolve = (chain) => {
       .end()
     .modules
       .add(helperPaths.appNodeModules)
+      // for monorepo like: root/packages/app
+      .add(path.resolve(helperPaths.app, '../../node_modules'))
       .end()
     .alias
       .merge(alias)
