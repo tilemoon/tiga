@@ -6,12 +6,41 @@ const zlib = require('zlib')
 const tar = require('tar')
 const helperPaths = require('./helper/paths')
 const { logger } = require('./util')
+const chalk = require('chalk')
+var inquirer = require('inquirer')
 
 const reactTemplate = '@tilemoon/react-template'
+const viteReactTemplate = '@tilemoon/vite-react-template'
+
+const templates = {
+  'tiga-react-ts': reactTemplate,
+  'vite-react-ts': viteReactTemplate,
+}
 
 const create = async (projectName, {
   force = false,
+  template,
 })=> {
+  if (template && !templates[template]) {
+    logger.fatal(`unknown template, choose one from below:
+${Object.keys(templates).map((tpl, i) => chalk.blue(`${i + 1}. ${tpl}`)).join('\n')}
+`)
+  } else {
+    const templateQsName = 'choose one template to create'
+    await inquirer
+      .prompt([{
+        name: templateQsName,
+        type: 'list',
+        choices: Object.keys(templates),
+      }])
+      .then((answers) => {
+        template =  answers[templateQsName]
+      })
+      .catch(logger.fatalByError)
+  }
+
+  const templateName = templates[template]
+
   const version = require(helperPaths.cliPackage).version
   const targetDir = path.resolve(helperPaths.app, projectName)
 
@@ -24,8 +53,8 @@ const create = async (projectName, {
   }
   fs.mkdirSync(targetDir)
 
-  const currentReactTemplate = `${reactTemplate}@${version}`
-  const result = spawn.sync('npm', ['view', currentReactTemplate, 'dist.tarball'], {stdio: 'pipe'})
+  const currentTemplate = `${templateName}@${version}`
+  const result = spawn.sync('npm', ['view', currentTemplate, 'dist.tarball'], {stdio: 'pipe'})
 
   if (result.stdout) {
     const pkgUrl = result.stdout.toString().trim()
@@ -39,7 +68,7 @@ const create = async (projectName, {
         strip: 1
       }))
   } else {
-    logger.fatal(`can't find ${currentReactTemplate} npm package.`)
+    logger.fatal(`can't find ${currentTemplate} npm package.`)
   }
 }
 

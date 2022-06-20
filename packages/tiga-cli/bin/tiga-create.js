@@ -11,6 +11,7 @@ const flags = new Command()
 flags
   .argument('project-name', 'project name')
   .option('-f,--force', 'force to create project directory even path exists.')
+  .option('--template <template>', 'choose a template to create.')
   .action((projectName, options) => {
     create(projectName, options)
   })
