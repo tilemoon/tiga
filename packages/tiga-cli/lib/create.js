@@ -40,6 +40,7 @@ ${Object.keys(templates).map((tpl, i) => chalk.blue(`${i + 1}. ${tpl}`)).join('\
   }
 
   const templateName = templates[template]
+  console.log(templateName)
 
   const version = require(helperPaths.cliPackage).version
   const targetDir = path.resolve(helperPaths.app, projectName)

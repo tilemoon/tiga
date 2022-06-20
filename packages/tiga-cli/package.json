@@ -2,7 +2,7 @@
   "name": "@tilemoon/tiga",
   "version": "0.4.0",
   "main": "index.js",
-  "author": "tilemoon <zhengmao0613@gmail.com>",
+  "author": "tilemoon <zhengmao0613@163.com>",
   "license": "MIT",
   "bin": {
     "tiga": "./bin/tiga.js"
