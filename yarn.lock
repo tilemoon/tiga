@@ -1985,6 +1985,13 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@tilemoon/use-lock@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@tilemoon/use-lock/-/use-lock-0.0.3.tgz#d433c8b80c4eaaf31f305109d3cd7dfa7dbeba1e"
+  integrity sha512-sksFol35yL0RPUVx0aMFVpzt/qi1UzRoJSV/SSoKVAuATbdgB3eAB/HSJPZhune8G+Ed8/7xBoWvvjWQCvBMCQ==
+  dependencies:
+    "@types/react" "18.0.14"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
